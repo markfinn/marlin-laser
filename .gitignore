@@ -21,3 +21,4 @@ Marlin/Visual Micro/Upload.vmps.xml
 Marlin/Visual Micro/Configuration.Release.vmps.xml
 Marlin/.klocwork/Marlin/local.properties
 Marlin/.klocwork/Marlin/version
+*.suo
