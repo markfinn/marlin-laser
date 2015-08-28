@@ -27,52 +27,144 @@
 
 laser_t laser;
 
-void timer3_init(int pin) {
-  pinMode(pin, OUTPUT);
-    analogWrite(pin, 1);  // let Arduino setup do it's thing to the PWM pin
+void laser_timer_init(int pin){
+    pinMode(pin, OUTPUT);
+    analogWrite(pin,1);
 
-    TCCR3B = 0x00;  // stop Timer4 clock for register updates
-    TCCR3A = 0x82; // Clear OC3A on match, fast PWM mode, lower WGM3x=14
-    ICR3 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
-    OCR3A = labs(F_CPU / LASER_PWM) - 1; // ICR3 - 1 force immediate compare on next tick
-    TCCR3B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+    switch(digitalPinToTimer(pin)){
+#ifdef TCCR0A
+            case TIMER0A:
+            case TIMER0A:
+            case TIMER0B:
+                {
+                    TCCR0B = 0x00;  // stop Timer4 clock for register updates
+                    TCCR0A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+                    ICR0 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+                    OCR0A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+                    TCCR0B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
 
-    noInterrupts();
-    TCCR3B &= 0xf8; // stop timer, OC3A may be active now
-    TCNT3 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
-    ICR3 = labs(F_CPU / LASER_PWM); // set new PWM period
-    TCCR3B |= 0x01; // start the timer with proper prescaler value
-    interrupts();
-}
+                    noInterrupts();
+                    TCCR0B &= 0xf8; // stop timer, OC4A may be active now
+                    TCNT0 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+                    ICR0 = labs(F_CPU / LASER_PWM); // set new PWM period
+                    TCCR0B |= 0x01; // start the timer with proper prescaler value
+                    interrupts();
+                    break;
+                }
+#endif
+#ifdef TCCR1A
+            case TIMER1A:
+            case TIMER1B:
+            case TIMER1C:
+                {
+                    TCCR1B = 0x00;  // stop Timer4 clock for register updates
+                    TCCR1A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+                    ICR1 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+                    OCR1A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+                    TCCR1B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
 
-void timer4_init(int pin) {
-  pinMode(pin, OUTPUT);
-    analogWrite(pin, 1);  // let Arduino setup do it's thing to the PWM pin
+                    noInterrupts();
+                    TCCR1B &= 0xf8; // stop timer, OC4A may be active now
+                    TCNT1 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+                    ICR1 = labs(F_CPU / LASER_PWM); // set new PWM period
+                    TCCR1B |= 0x01; // start the timer with proper prescaler value
+                    interrupts();
+                    break;
+                }
+#endif
+#ifdef TCCR2A
+            case TIMER2:
+            case TIMER2A:
+            case TIMER2B:
+                {
+                    TCCR2B = 0x00;  // stop Timer4 clock for register updates
+                    TCCR2A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+                    ICR2 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+                    OCR2A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+                    TCCR2B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
 
-    TCCR4B = 0x00;  // stop Timer4 clock for register updates
-    TCCR4A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
-    ICR4 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
-    OCR4A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
-    TCCR4B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+                    noInterrupts();
+                    TCCR2B &= 0xf8; // stop timer, OC4A may be active now
+                    TCNT2 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+                    ICR2 = labs(F_CPU / LASER_PWM); // set new PWM period
+                    TCCR2B |= 0x01; // start the timer with proper prescaler value
+                    interrupts();
+                    break;
+                }
+#endif
+#ifdef TCCR3A
+            case TIMER3A:
+            case TIMER3B:
+            case TIMER3C:
+                {
+                    TCCR3B = 0x00;  // stop Timer4 clock for register updates
+                    TCCR3A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+                    ICR3 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+                    OCR3A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+                    TCCR3B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
 
-    noInterrupts();
-    TCCR4B &= 0xf8; // stop timer, OC4A may be active now
-    TCNT4 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
-    ICR4 = labs(F_CPU / LASER_PWM); // set new PWM period
-    TCCR4B |= 0x01; // start the timer with proper prescaler value
-    interrupts();
+                    noInterrupts();
+                    TCCR3B &= 0xf8; // stop timer, OC4A may be active now
+                    TCNT3 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+                    ICR3 = labs(F_CPU / LASER_PWM); // set new PWM period
+                    TCCR3B |= 0x01; // start the timer with proper prescaler value
+                    interrupts();
+                    break;
+                }
+#endif
+#ifdef TCCR4A
+            case TIMER4A:
+            case TIMER4B:
+            case TIMER4C:
+            case TIMER4D:
+                {
+                    TCCR4B = 0x00;  // stop Timer4 clock for register updates
+                    TCCR4A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+                    ICR4 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+                    OCR4A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+                    TCCR4B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+
+                    noInterrupts();
+                    TCCR4B &= 0xf8; // stop timer, OC4A may be active now
+                    TCNT4 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+                    ICR4 = labs(F_CPU / LASER_PWM); // set new PWM period
+                    TCCR4B |= 0x01; // start the timer with proper prescaler value
+                    interrupts();
+                    break;
+                }
+#endif
+#ifdef TCCR5A
+            case TIMER5A:
+            case TIMER5B:
+            case TIMER5C:
+                {
+                    TCCR5B = 0x00;  // stop Timer4 clock for register updates
+                    TCCR5A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+                    ICR5 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+                    OCR5A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+                    TCCR5B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+
+                    noInterrupts();
+                    TCCR5B &= 0xf8; // stop timer, OC4A may be active now
+                    TCNT5 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+                    ICR5 = labs(F_CPU / LASER_PWM); // set new PWM period
+                    TCCR5B |= 0x01; // start the timer with proper prescaler value
+                    interrupts();
+                    break;
+                }
+#endif
+
+    }
 }
 
 void laser_init()
 {
   // Initialize timers for laser intensity control
   #if LASER_CONTROL == 1
-    if (LASER_FIRING_PIN == 2 || LASER_FIRING_PIN == 3 || LASER_FIRING_PIN == 5) timer3_init(LASER_FIRING_PIN);
-    if (LASER_FIRING_PIN == 6 || LASER_FIRING_PIN == 7 || LASER_FIRING_PIN == 8) timer4_init(LASER_FIRING_PIN);
+    laser_timer_init(LASER_FIRING_PIN);
   #endif
   #if LASER_CONTROL == 2
-    if (LASER_INTENSITY_PIN == 2 || LASER_INTENSITY_PIN == 3 || LASER_INTENSITY_PIN == 5) timer3_init(LASER_INTENSITY_PIN);
-    if (LASER_INTENSITY_PIN == 6 || LASER_INTENSITY_PIN == 7 || LASER_INTENSITY_PIN == 8) timer4_init(LASER_INTENSITY_PIN);
+    laser_timer_init(LASER_INTENSITY_PIN);
   #endif
 
   #ifdef LASER_PERIPHERALS
