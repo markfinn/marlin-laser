@@ -20,6 +20,13 @@
 //#define BAUDRATE 250000
 #define BAUDRATE 115200
 
+// The following define selects which electronics board you have. Please choose the one that matches your setup
+// 1 = mega/RAMPS 1.3 / 1.4
+// 2 = atmega1284p(custom FredrikHson)
+
+#ifndef MOTHERBOARD
+#define MOTHERBOARD 2
+#endif
 // Define this to set a custom name for your generic Mendel,
 // #define CUSTOM_MENDEL_NAME "This Mendel"
 
