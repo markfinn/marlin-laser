@@ -28,22 +28,24 @@
  */
 int SdFatUtil::FreeRam()
 {
-	extern int  __bss_end;
-	extern int* __brkval;
-	int free_memory;
-	if(reinterpret_cast<int>(__brkval) == 0)
-	{
-		// if no heap use from end of bss section
-		free_memory = reinterpret_cast<int>(&free_memory)
-		              - reinterpret_cast<int>(&__bss_end);
-	}
-	else
-	{
-		// use from top of stack to heap
-		free_memory = reinterpret_cast<int>(&free_memory)
-		              - reinterpret_cast<int>(__brkval);
-	}
-	return free_memory;
+    extern int  __bss_end;
+    extern int* __brkval;
+    int free_memory;
+
+    if(reinterpret_cast<int>(__brkval) == 0)
+    {
+        // if no heap use from end of bss section
+        free_memory = reinterpret_cast<int>(&free_memory)
+                      - reinterpret_cast<int>(&__bss_end);
+    }
+    else
+    {
+        // use from top of stack to heap
+        free_memory = reinterpret_cast<int>(&free_memory)
+                      - reinterpret_cast<int>(__brkval);
+    }
+
+    return free_memory;
 }
 //------------------------------------------------------------------------------
 /** %Print a string in flash memory.
@@ -53,7 +55,10 @@ int SdFatUtil::FreeRam()
  */
 void SdFatUtil::print_P(PGM_P str)
 {
-	for(uint8_t c; (c = pgm_read_byte(str)); str++) { MYSERIAL.write(c); }
+    for(uint8_t c; (c = pgm_read_byte(str)); str++)
+    {
+        MYSERIAL.write(c);
+    }
 }
 //------------------------------------------------------------------------------
 /** %Print a string in flash memory followed by a CR/LF.
@@ -63,8 +68,8 @@ void SdFatUtil::print_P(PGM_P str)
  */
 void SdFatUtil::println_P(PGM_P str)
 {
-	print_P(str);
-	MYSERIAL.println();
+    print_P(str);
+    MYSERIAL.println();
 }
 //------------------------------------------------------------------------------
 /** %Print a string in flash memory to Serial.
@@ -73,7 +78,7 @@ void SdFatUtil::println_P(PGM_P str)
  */
 void SdFatUtil::SerialPrint_P(PGM_P str)
 {
-	print_P(str);
+    print_P(str);
 }
 //------------------------------------------------------------------------------
 /** %Print a string in flash memory to Serial followed by a CR/LF.
@@ -82,6 +87,6 @@ void SdFatUtil::SerialPrint_P(PGM_P str)
  */
 void SdFatUtil::SerialPrintln_P(PGM_P str)
 {
-	println_P(str);
+    println_P(str);
 }
 #endif

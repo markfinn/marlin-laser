@@ -31,38 +31,38 @@
 // the source g-code and may never actually be reached if acceleration management is active.
 typedef struct
 {
-	// Fields used by the bresenham algorithm for tracing the line
-	long steps_x, steps_y, steps_z;			  // Step count along each axis
-	unsigned long step_event_count;           // The number of step events required to complete this block
-	long accelerate_until;                    // The index of the step event on which to stop acceleration
-	long decelerate_after;                    // The index of the step event on which to start decelerating
-	long acceleration_rate;                   // The acceleration rate used for acceleration calculation
-	unsigned char direction_bits;             // The direction bit set for this block (refers to *_DIRECTION_BIT in config.h)
+    // Fields used by the bresenham algorithm for tracing the line
+    long steps_x, steps_y, steps_z;			  // Step count along each axis
+    unsigned long step_event_count;           // The number of step events required to complete this block
+    long accelerate_until;                    // The index of the step event on which to stop acceleration
+    long decelerate_after;                    // The index of the step event on which to start decelerating
+    long acceleration_rate;                   // The acceleration rate used for acceleration calculation
+    unsigned char direction_bits;             // The direction bit set for this block (refers to *_DIRECTION_BIT in config.h)
 
-	// Fields used by the motion planner to manage acceleration
-//  float speed_x, speed_y, speed_z, speed_e;		   // Nominal mm/sec for each axis
-	float nominal_speed;                               // The nominal speed for this block in mm/sec
-	float entry_speed;                                 // Entry speed at previous-current junction in mm/sec
-	float max_entry_speed;                             // Maximum allowable junction entry speed in mm/sec
-	float millimeters;                                 // The total travel of this block in mm
-	float acceleration;                                // acceleration mm/sec^2
-	unsigned char recalculate_flag;                    // Planner flag to recalculate trapezoids on entry junction
-	unsigned char nominal_length_flag;                 // Planner flag for nominal speed always reached
+    // Fields used by the motion planner to manage acceleration
+    //  float speed_x, speed_y, speed_z, speed_e;		   // Nominal mm/sec for each axis
+    float nominal_speed;                               // The nominal speed for this block in mm/sec
+    float entry_speed;                                 // Entry speed at previous-current junction in mm/sec
+    float max_entry_speed;                             // Maximum allowable junction entry speed in mm/sec
+    float millimeters;                                 // The total travel of this block in mm
+    float acceleration;                                // acceleration mm/sec^2
+    unsigned char recalculate_flag;                    // Planner flag to recalculate trapezoids on entry junction
+    unsigned char nominal_length_flag;                 // Planner flag for nominal speed always reached
 
-	// Settings for the trapezoid generator
-	unsigned long nominal_rate;                        // The nominal step rate for this block in step_events/sec
-	unsigned long initial_rate;                        // The jerk-adjusted step rate at start of block
-	unsigned long final_rate;                          // The minimal rate at exit
-	unsigned long acceleration_st;                     // acceleration steps/sec^2
-	unsigned long fan_speed;
-	uint8_t laser_mode; // CONTINUOUS, PULSED, RASTER
-	bool laser_status; // LASER_OFF, LASER_ON
-	float laser_ppm; // pulses per millimeter, for pulsed and raster firing modes
-	unsigned long laser_duration; // laser firing duration in microseconds, for pulsed and raster firing modes
-	long steps_l; // step count between firings of the laser, for pulsed firing mode
-	int laser_intensity; // Laser firing instensity in clock cycles for the PWM timer
-	unsigned char laser_raster_data[LASER_MAX_RASTER_LINE];
-	volatile char busy;
+    // Settings for the trapezoid generator
+    unsigned long nominal_rate;                        // The nominal step rate for this block in step_events/sec
+    unsigned long initial_rate;                        // The jerk-adjusted step rate at start of block
+    unsigned long final_rate;                          // The minimal rate at exit
+    unsigned long acceleration_st;                     // acceleration steps/sec^2
+    unsigned long fan_speed;
+    uint8_t laser_mode; // CONTINUOUS, PULSED, RASTER
+    bool laser_status; // LASER_OFF, LASER_ON
+    float laser_ppm; // pulses per millimeter, for pulsed and raster firing modes
+    unsigned long laser_duration; // laser firing duration in microseconds, for pulsed and raster firing modes
+    long steps_l; // step count between firings of the laser, for pulsed firing mode
+    int laser_intensity; // Laser firing instensity in clock cycles for the PWM timer
+    unsigned char laser_raster_data[LASER_MAX_RASTER_LINE];
+    volatile char busy;
 } block_t;
 
 // Initialize the motion plan subsystem
@@ -100,37 +100,40 @@ extern volatile unsigned char block_buffer_tail;
 // availible for new blocks.
 FORCE_INLINE void plan_discard_current_block()
 {
-	if(block_buffer_head != block_buffer_tail)
-	{
-		block_buffer_tail = (block_buffer_tail + 1) & (BLOCK_BUFFER_SIZE - 1);
-	}
+    if(block_buffer_head != block_buffer_tail)
+    {
+        block_buffer_tail = (block_buffer_tail + 1) & (BLOCK_BUFFER_SIZE - 1);
+    }
 }
 
 // Gets the current block. Returns NULL if buffer empty
 FORCE_INLINE block_t* plan_get_current_block()
 {
-	if(block_buffer_head == block_buffer_tail)
-	{
-		return (NULL);
-	}
-	block_t* block = &block_buffer[block_buffer_tail];
-	block->busy = true;
-	return (block);
+    if(block_buffer_head == block_buffer_tail)
+    {
+        return (NULL);
+    }
+
+    block_t* block = &block_buffer[block_buffer_tail];
+    block->busy = true;
+    return (block);
 }
 
 // Gets the current block. Returns NULL if buffer empty
 FORCE_INLINE bool blocks_queued()
 {
-	if(block_buffer_head == block_buffer_tail)
-	{
-		return false;
-	}
-	else
-	{ return true; }
+    if(block_buffer_head == block_buffer_tail)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 #ifdef PREVENT_DANGEROUS_EXTRUDE
-	void set_extrude_min_temp(float temp);
+    void set_extrude_min_temp(float temp);
 #endif
 
 void reset_acceleration_rates();
