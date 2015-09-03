@@ -3,7 +3,7 @@
 
 // NOTE: IF YOU CHANGE THIS FILE / MERGE THIS FILE WITH CHANGES
 //
-//   ==> ALWAYS TRY TO COMPILE MARLIN WITH/WITHOUT "ULTIPANEL" / "ULTRALCD" / "SDSUPPORT" #define IN "Configuration.h" 
+//   ==> ALWAYS TRY TO COMPILE MARLIN WITH/WITHOUT "ULTIPANEL" / "ULTRALCD" / "SDSUPPORT" #define IN "Configuration.h"
 //   ==> ALSO TRY ALL AVAILABLE "LANGUAGE_CHOICE" OPTIONS
 
 // Languages
@@ -18,35 +18,25 @@
 // 9  Finnish
 
 #ifndef LANGUAGE_CHOICE
-#define LANGUAGE_CHOICE 1  // Pick your language from the list above
+	#define LANGUAGE_CHOICE 1  // Pick your language from the list above
 #endif
 
 #define PROTOCOL_VERSION "1.0"
 
-#if MOTHERBOARD == 7 || MOTHERBOARD == 71
-	#define MACHINE_NAME "Ultimaker"
-	#define FIRMWARE_URL "http://firmware.ultimaker.com"
-#elif MOTHERBOARD == 80
-	#define MACHINE_NAME "Rumba"
-	#define FIRMWARE_URL "https://github.com/ErikZalm/Marlin/"
-#elif MOTHERBOARD == 77
-	#define MACHINE_NAME "3Drag"
-	#define FIRMWARE_URL "http://3dprint.elettronicain.it/"
-#else
-	#ifdef CUSTOM_MENDEL_NAME
-		#define MACHINE_NAME CUSTOM_MENDEL_NAME
-	#else
-		#define MACHINE_NAME "Mendel"
-	#endif
-	#define FIRMWARE_URL "http://www.mendel-parts.com"
-#endif
+#define MACHINE_NAME "K40 Laser"
+#define FIRMWARE_URL "https://github.com/MrMaxP/buildlog-lasercutter-marlin"
+
+//#define FIRMWARE_URL "http://www.mendel-parts.com"
 
 #define STRINGIFY_(n) #n
 #define STRINGIFY(n) STRINGIFY_(n)
 
+#define MSG_ABOUT "K40 Firmware - MrMaxP"
+
+
 #if LANGUAGE_CHOICE == 1
 
-// LCD Menu Messages
+	// LCD Menu Messages
 	#define WELCOME_MSG MACHINE_NAME " Ready."
 	#define MSG_SD_INSERTED "Card inserted"
 	#define MSG_SD_REMOVED "Card removed"
@@ -76,7 +66,6 @@
 	#define MSG_MIN " \002 Min"
 	#define MSG_MAX " \002 Max"
 	#define MSG_FACTOR " \002 Fact"
-	#define MSG_AUTOTEMP "Autotemp"
 	#define MSG_ON "On "
 	#define MSG_OFF "Off"
 	#define MSG_PID_P "PID-P"
@@ -129,10 +118,11 @@
 	#define MSG_CONTROL_RETRACT_RECOVERF "UnRet  F"
 	#define MSG_AUTORETRACT "AutoRetr."
 	#define MSG_FILAMENTCHANGE "Change filament"
-	#define MSG_INIT_SDCARD "Init. SD-Card"	
+	#define MSG_INIT_SDCARD "Init. SD-Card"
 	#define MSG_CNG_SDCARD "Change SD-Card"
+	#define MSG_ABOUT_MENU "About"
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing "enqueing \""
 	#define MSG_POWERUP "PowerUp"
@@ -169,8 +159,6 @@
 	#define MSG_ERR_STOPPED "Printer stopped due to errors. Fix the error and use M999 to restart. (Temperature is reset. Set it after restarting)"
 	#define MSG_RESEND "Resend: "
 	#define MSG_UNKNOWN_COMMAND "Unknown command: \""
-	#define MSG_ACTIVE_EXTRUDER "Active Extruder: "
-	#define MSG_INVALID_EXTRUDER "Invalid extruder"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
@@ -208,7 +196,7 @@
 
 #if LANGUAGE_CHOICE == 2
 
-// LCD Menu Messages
+	// LCD Menu Messages
 	#define WELCOME_MSG MACHINE_NAME " Gotowe."
 	#define MSG_SD_INSERTED "Karta wlozona"
 	#define MSG_SD_REMOVED "Karta usunieta"
@@ -238,7 +226,6 @@
 	#define MSG_MIN " \002 Min"
 	#define MSG_MAX " \002 Max"
 	#define MSG_FACTOR " \002 Mnoznik"
-	#define MSG_AUTOTEMP "Auto. temp."
 	#define MSG_ON "Wl. "
 	#define MSG_OFF "Wyl."
 	#define MSG_PID_P "PID-P"
@@ -294,10 +281,10 @@
 	#define MSG_CONTROL_RETRACT_RECOVERF "Cof. wycof.  F"
 	#define MSG_AUTORETRACT "Auto. wycofanie"
 	#define MSG_FILAMENTCHANGE "Change filament"
-	#define MSG_INIT_SDCARD "Init. SD-Card"	
+	#define MSG_INIT_SDCARD "Init. SD-Card"
 	#define MSG_CNG_SDCARD "Change SD-Card"
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing "Kolejkowanie \""
 	#define MSG_POWERUP "Zasilanie wlaczone"
@@ -334,8 +321,6 @@
 	#define MSG_ERR_STOPPED "Drukarka zatrzymana z powodu bledu. Usun problem i zrestartuj drukartke komenda M999. (temperatura zostala zresetowana; ustaw temperature po restarcie)"
 	#define MSG_RESEND "Wyslij ponownie: "
 	#define MSG_UNKNOWN_COMMAND "Nieznane polecenie: \""
-	#define MSG_ACTIVE_EXTRUDER "Aktywny ekstruder: "
-	#define MSG_INVALID_EXTRUDER "Niepoprawny ekstruder"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
@@ -404,7 +389,6 @@
 	#define MSG_MIN " \002 Min"
 	#define MSG_MAX " \002 Max"
 	#define MSG_FACTOR " \002 Facteur"
-	#define MSG_AUTOTEMP "Temp. Auto."
 	#define MSG_ON "Marche "
 	#define MSG_OFF "Arret"
 	#define MSG_PID_P "PID-P"
@@ -458,10 +442,10 @@
 	#define MSG_CONTROL_RETRACT_RECOVERF "UnRet F"
 	#define MSG_AUTORETRACT "Retract. Auto."
 	#define MSG_FILAMENTCHANGE "Changer filament"
-	#define MSG_INIT_SDCARD "Init. la carte SD"	
+	#define MSG_INIT_SDCARD "Init. la carte SD"
 	#define MSG_CNG_SDCARD "Changer de carte SD"
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing "Mise en tampon \""
 	#define MSG_POWERUP "Allumage"
@@ -498,8 +482,6 @@
 	#define MSG_ERR_STOPPED "Impression arretee a cause d'erreurs. Corriger les erreurs et utiliser M999 pour la reprendre. (Temperature remise a zero. Reactivez la apres redemarrage)"
 	#define MSG_RESEND "Renvoie: "
 	#define MSG_UNKNOWN_COMMAND "Commande inconnue: \""
-	#define MSG_ACTIVE_EXTRUDER "Extrudeur actif: "
-	#define MSG_INVALID_EXTRUDER "Extrudeur invalide"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
@@ -531,13 +513,13 @@
 	#define MSG_ENDSTOPS_HIT "Fin de course atteint: "
 	#define MSG_ERR_COLD_EXTRUDE_STOP " Extrusion a froid evitee"
 	#define MSG_ERR_LONG_EXTRUDE_STOP " Extrusion longue evitee"
-	
+
 #endif
 
 
 #if LANGUAGE_CHOICE == 4
 
-// LCD Menu Messages
+	// LCD Menu Messages
 
 	#define WELCOME_MSG MACHINE_NAME " Bereit."
 
@@ -569,7 +551,6 @@
 	#define MSG_MIN              "\002 Min"
 	#define MSG_MAX              "\002 Max"
 	#define MSG_FACTOR           "\002 Faktor"
-	#define MSG_AUTOTEMP         "AutoTemp"
 	#define MSG_ON               "Ein"
 	#define MSG_OFF              "Aus"
 	#define MSG_PID_P            "PID-P"
@@ -610,7 +591,7 @@
 	#define MSG_STOP_PRINT       "Druck stoppen"
 	#define MSG_CARD_MENU        "SDKarten Menü"
 	#define MSG_NO_CARD          "Keine SDKarte"
-	#define MSG_DWELL            "Warten..."		
+	#define MSG_DWELL            "Warten..."
 	#define MSG_USERWAIT         "Warte auf Nutzer..."
 	#define MSG_RESUMING         "Druck fortsetzung"
 	#define MSG_NO_MOVE          "Kein Zug."
@@ -625,10 +606,10 @@
 	#define MSG_CONTROL_RETRACT_RECOVERF "UnRet  F"
 	#define MSG_AUTORETRACT      "AutoRetr."
 	#define MSG_FILAMENTCHANGE "Filament wechseln"
-	#define MSG_INIT_SDCARD "Init. SD-Card"	
+	#define MSG_INIT_SDCARD "Init. SD-Card"
 	#define MSG_CNG_SDCARD "Change SD-Card"
-	
-// Serial Console Messages
+
+	// Serial Console Messages
 
 	#define MSG_Enqueing "enqueing \""
 	#define MSG_POWERUP "PowerUp"
@@ -665,8 +646,6 @@
 	#define MSG_ERR_STOPPED "Printer stopped due to errors. Fix the error and use M999 to restart!"
 	#define MSG_RESEND "Resend:"
 	#define MSG_UNKNOWN_COMMAND "Unknown command:\""
-	#define MSG_ACTIVE_EXTRUDER "Active Extruder: "
-	#define MSG_INVALID_EXTRUDER "Invalid extruder"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
@@ -704,7 +683,7 @@
 
 #if LANGUAGE_CHOICE == 5
 
-// LCD Menu Messages
+	// LCD Menu Messages
 	#define WELCOME_MSG MACHINE_NAME "Lista."
 	#define MSG_SD_INSERTED "Tarjeta SD Colocada"
 	#define MSG_SD_REMOVED "Tarjeta SD Retirada"
@@ -734,7 +713,6 @@
 	#define MSG_MIN "\002 Min"
 	#define MSG_MAX "\002 Max"
 	#define MSG_FACTOR "\002 Fact"
-	#define MSG_AUTOTEMP "Autotemp"
 	#define MSG_ON "On"
 	#define MSG_OFF "Off"
 	#define MSG_PID_P "PID-P"
@@ -799,7 +777,7 @@
 	#define MSG_PART_RELEASE "Desacople Parcial"
 	#define MSG_STEPPER_RELEASED "Desacoplada."
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing "En cola \""
 	#define MSG_POWERUP "PowerUp"
@@ -836,8 +814,6 @@
 	#define MSG_ERR_STOPPED "¡Impresora parada por errores. Arregle el error y use M999 Para reiniciar!. (La temperatura se reestablece. Ajustela antes de continuar)"
 	#define MSG_RESEND "Reenviar:"
 	#define MSG_UNKNOWN_COMMAND "Comando Desconocido:\""
-	#define MSG_ACTIVE_EXTRUDER "Extrusor Activo: "
-	#define MSG_INVALID_EXTRUDER "Extrusor Invalido"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
@@ -903,7 +879,6 @@
 	#define MSG_MIN								" \002 Минимум:"
 	#define MSG_MAX								" \002 Максимум:"
 	#define MSG_FACTOR							" \002 Фактор:"
-	#define MSG_AUTOTEMP						" Autotemp:"
 	#define MSG_ON								"Вкл. "
 	#define MSG_OFF								"Выкл. "
 	#define MSG_PID_P							" PID-P: "
@@ -930,7 +905,7 @@
 	#define MSG_RECTRACT    					" Откат подачи      \x7E"
 	#define MSG_TEMPERATURE  				" Температура       \x7E"
 	#define MSG_MOTION						" Скорости          \x7E"
-		#define MSG_CONTRAST "LCD contrast"
+	#define MSG_CONTRAST "LCD contrast"
 	#define MSG_STORE_EPROM						" Сохранить настройки"
 	#define MSG_LOAD_EPROM						" Загрузить настройки"
 	#define MSG_RESTORE_FAILSAFE				" Сброс настроек     "
@@ -957,10 +932,10 @@
 	#define MSG_CONTROL_RETRACT_RECOVERF		" Возврат  F:"
 	#define MSG_AUTORETRACT						" АвтоОткат:"
 	#define MSG_FILAMENTCHANGE "Change filament"
-	#define MSG_INIT_SDCARD "Init. SD-Card"	
+	#define MSG_INIT_SDCARD "Init. SD-Card"
 	#define MSG_CNG_SDCARD "Change SD-Card"
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing						"Запланировано \""
 	#define MSG_POWERUP							"Включение питания"
@@ -997,8 +972,6 @@
 	#define MSG_ERR_STOPPED						"Ошибка принтера, останов. Устраните неисправность и используйте M999 для перезагрузки!. (Температура недоступна. Проверьте датчики)"
 	#define MSG_RESEND							"Переотправка:"
 	#define MSG_UNKNOWN_COMMAND					"Неизвестная команда:\""
-	#define MSG_ACTIVE_EXTRUDER					"Активный экструдер: "
-	#define MSG_INVALID_EXTRUDER				"Ошибка экструдера"
 	#define MSG_X_MIN							"x_min:"
 	#define MSG_X_MAX							"x_max:"
 	#define MSG_Y_MIN							"y_min:"
@@ -1064,7 +1037,6 @@
 	#define MSG_MIN                  " \002 Min:"
 	#define MSG_MAX                  " \002 Max:"
 	#define MSG_FACTOR               " \002 Fact:"
-	#define MSG_AUTOTEMP             "Autotemp"
 	#define MSG_ON                   "On "
 	#define MSG_OFF                  "Off"
 	#define MSG_PID_P                "PID-P"
@@ -1158,8 +1130,6 @@
 	#define MSG_ERR_STOPPED          "Stampante fermata a causa di errori. Risolvi l'errore e usa M999 per ripartire!. (Reset temperatura. Impostala prima di ripartire)"
 	#define MSG_RESEND               "Reinviato:"
 	#define MSG_UNKNOWN_COMMAND      "Comando sconosciuto: \""
-	#define MSG_ACTIVE_EXTRUDER      "Attiva Estrusore: "
-	#define MSG_INVALID_EXTRUDER     "Estrusore non valido"
 	#define MSG_X_MIN                "x_min: "
 	#define MSG_X_MAX                "x_max: "
 	#define MSG_Y_MIN                "y_min: "
@@ -1197,7 +1167,7 @@
 
 #if LANGUAGE_CHOICE == 8
 
-// LCD Menu Messages
+	// LCD Menu Messages
 	#define WELCOME_MSG MACHINE_NAME " Pronta."
 	#define MSG_SD_INSERTED "Cartao SD inserido"
 	#define MSG_SD_REMOVED "Cartao SD removido"
@@ -1229,7 +1199,6 @@
 	#define MSG_MIN " \002 Min:"
 	#define MSG_MAX " \002 Max:"
 	#define MSG_FACTOR " \002 Fact:"
-	#define MSG_AUTOTEMP " Autotemp:"
 	#define MSG_ON "On "
 	#define MSG_OFF "Off"
 	#define MSG_PID_P " PID-P: "
@@ -1288,10 +1257,10 @@
 	#define MSG_AUTORETRACT " AutoRetr.:"
 	#define MSG_SERIAL_ERROR_MENU_STRUCTURE "Algo esta errado na estrutura do Menu."
 	#define MSG_FILAMENTCHANGE "Change filament"
-	#define MSG_INIT_SDCARD "Init. SD-Card"	
+	#define MSG_INIT_SDCARD "Init. SD-Card"
 	#define MSG_CNG_SDCARD "Change SD-Card"
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing "enqueing \""
 	#define MSG_POWERUP "PowerUp"
@@ -1328,8 +1297,6 @@
 	#define MSG_ERR_STOPPED "Impressora parada por erros. Coserte o erro e use M999 para recomeçar!. (Temperatura reiniciada. Ajuste antes de recomeçar)"
 	#define MSG_RESEND "Reenviar:"
 	#define MSG_UNKNOWN_COMMAND "Comando desconhecido:\""
-	#define MSG_ACTIVE_EXTRUDER "Extrusor ativo: "
-	#define MSG_INVALID_EXTRUDER "Extrusor invalido"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
@@ -1369,9 +1336,9 @@
 
 #if LANGUAGE_CHOICE == 9
 
-// Finnish
+	// Finnish
 
-// LCD Menu Messages
+	// LCD Menu Messages
 	#define WELCOME_MSG MACHINE_NAME " valmis"
 	#define MSG_SD_INSERTED "Kortti asetettu"
 	#define MSG_SD_REMOVED "Kortti poistettu"
@@ -1401,7 +1368,6 @@
 	#define MSG_MIN " \002 Min"
 	#define MSG_MAX " \002 Max"
 	#define MSG_FACTOR " \002 Kerr"
-	#define MSG_AUTOTEMP "Autotemp"
 	#define MSG_ON "On "
 	#define MSG_OFF "Off"
 	#define MSG_PID_P "PID-P"
@@ -1454,10 +1420,10 @@
 	#define MSG_CONTROL_RETRACT_RECOVERF "UnRet  F"
 	#define MSG_AUTORETRACT "AutoVeto."
 	#define MSG_FILAMENTCHANGE "Change filament"
-	#define MSG_INIT_SDCARD "Init. SD-Card"	
+	#define MSG_INIT_SDCARD "Init. SD-Card"
 	#define MSG_CNG_SDCARD "Change SD-Card"
 
-// Serial Console Messages
+	// Serial Console Messages
 
 	#define MSG_Enqueing "jonoon \""
 	#define MSG_POWERUP "Kaynnistys"
@@ -1494,8 +1460,6 @@
 	#define MSG_ERR_STOPPED "Tulostin pysaytetty virheiden vuoksi. Korjaa virheet ja kayta M999 kaynnistaaksesi uudelleen. (Lampotila nollattiin. Aseta lampotila sen jalkeen kun jatkat.)"
 	#define MSG_RESEND "Uudelleenlahetys: "
 	#define MSG_UNKNOWN_COMMAND "Tuntematon komento: \""
-	#define MSG_ACTIVE_EXTRUDER "Aktiivinen suutin: "
-	#define MSG_INVALID_EXTRUDER "Virheellinen suutin"
 	#define MSG_X_MIN "x_min: "
 	#define MSG_X_MAX "x_max: "
 	#define MSG_Y_MIN "y_min: "
