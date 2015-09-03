@@ -64,7 +64,7 @@
 // M Codes
 // M0   - Unconditional stop - Wait for user to press a button on the LCD (Only if ULTRA_LCD is enabled)
 // M1   - Same as M0
-// M5	- Stop the laser firing
+// M5   - Stop the laser firing
 // M17  - Enable/Power all stepper motors
 // M18  - Disable all stepper motors; same as M84
 // M20  - List SD card
@@ -87,21 +87,21 @@
 //        or use S<seconds> to specify an inactivity timeout, after which the steppers will be disabled.  S0 to disable the timeout.
 // M85  - Set inactivity shutdown timer with parameter S<seconds>. To disable set zero (default)
 // M92  - Set axis_steps_per_unit - same syntax as G92
-// M106 - Fan on					(****REPURPOSE for extractor fan?****)
-// M107 - Fan off					(****REPURPOSE for extractor fan?****)
+// M106 - Fan on                    (****REPURPOSE for extractor fan?****)
+// M107 - Fan off                   (****REPURPOSE for extractor fan?****)
 // M114 - Output current position to serial port
 // M115 - Capabilities string
 // M117 - display message
 // M119 - Output Endstop status to serial port
-// M201 - Set max acceleration in units/s^2 for print moves (M201 X1000 Y1000)			(****REALLY?****)
-// M202 - Set max acceleration in units/s^2 for travel moves (M202 X1000 Y1000) Unused in Marlin!!	(****REALLY?****)
-// M203 - Set maximum feedrate that your machine can sustain (M203 X200 Y200 Z300 E10000) in mm/sec	(****DELETE****)
+// M201 - Set max acceleration in units/s^2 for print moves (M201 X1000 Y1000)          (****REALLY?****)
+// M202 - Set max acceleration in units/s^2 for travel moves (M202 X1000 Y1000) Unused in Marlin!!  (****REALLY?****)
+// M203 - Set maximum feedrate that your machine can sustain (M203 X200 Y200 Z300 E10000) in mm/sec (****DELETE****)
 // M204 - Set default acceleration: S normal moves T filament only moves (M204 S3000 T7000) im mm/sec^2  also sets minimum segment time in ms (B20000) to prevent buffer underruns and M20 minimum feedrate (****REALLY?****)
-// M205 -  advanced settings:  minimum travel speed S=while printing T=travel only,  B=minimum segment time X= maximum xy jerk, Z=maximum Z jerk, E=maximum E jerk		(****REALLY?****)
+// M205 -  advanced settings:  minimum travel speed S=while printing T=travel only,  B=minimum segment time X= maximum xy jerk, Z=maximum Z jerk, E=maximum E jerk      (****REALLY?****)
 // M206 - set additional homeing offset
 // M220 S<factor in percent>- set speed factor override percentage
-// M221 S<factor in percent>- set extrude factor override percentage				(****REPURPOSE FOR LASER SCALE?****)
-// M250 - Set LCD contrast C<contrast value> (value 0..63)					(####REALLY?####)
+// M221 S<factor in percent>- set extrude factor override percentage                (****REPURPOSE FOR LASER SCALE?****)
+// M250 - Set LCD contrast C<contrast value> (value 0..63)                  (####REALLY?####)
 // M300 - Play beepsound S<frequency Hz> P<duration ms>
 // M400 - Finish all moves
 // M500 - stores paramters in EEPROM
@@ -112,8 +112,8 @@
 // M649 -
 // M650 -
 // M666 - set delta endstop adjustemnt
-// M907 - Set digital trimpot motor current using axis codes.		(####WHAT DOES THIS DO?####)
-// M908 - Control digital trimpot directly.				(####WHAT DOES THIS DO?####)
+// M907 - Set digital trimpot motor current using axis codes.       (####WHAT DOES THIS DO?####)
+// M908 - Control digital trimpot directly.             (####WHAT DOES THIS DO?####)
 // M350 - Set microstepping mode.
 // M351 - Toggle MS1 MS2 pins directly.
 // M928 - Start SD logging (M928 filename.g) - ended by M29
@@ -373,7 +373,7 @@ void setup()
 
     lcd_init();
     tone(BEEPER, 1500);
-    _delay_ms(1000);	// wait 1sec to display the splash screen
+    _delay_ms(1000);    // wait 1sec to display the splash screen
     noTone(BEEPER);
 
     #if defined(CONTROLLERFAN_PIN) && CONTROLLERFAN_PIN > -1
@@ -998,7 +998,7 @@ void process_commands()
             // L: Raw length
             // $: Increment Y axis
             // D: BASE64 encoded raster data
-            //		???? Missing data
+            //      ???? Missing data
             //////////////////////////////////////////////////////////////////////
             case 7: //G7 Execute raster line
                 if(code_seen('L'))

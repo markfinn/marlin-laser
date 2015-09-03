@@ -563,7 +563,7 @@ void plan_buffer_line(const float& x, const float& y, const float& z, float feed
 
     if(block->steps_x <= dropsegments && block->steps_y <= dropsegments && block->steps_z <= dropsegments)
     {
-        block->millimeters = 0.0;	// fabs(delta_mm[E_AXIS]);
+        block->millimeters = 0.0;   // fabs(delta_mm[E_AXIS]);
     }
     else
     {

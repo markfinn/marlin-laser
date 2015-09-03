@@ -1,7 +1,7 @@
 
-#define LASERENABLE_HEIGHT 	20
-#define LASERENABLE_WIDTH	25
-#define LASERENABLE_BYTEWIDTH	4
+#define LASERENABLE_HEIGHT  20
+#define LASERENABLE_WIDTH   25
+#define LASERENABLE_BYTEWIDTH   4
 const unsigned char laserenable_bmp[] PROGMEM =
 {
     0x00, 0x1c, 0x00, 0x00,
@@ -26,9 +26,9 @@ const unsigned char laserenable_bmp[] PROGMEM =
     0x7f, 0xff, 0xff, 0x00
 };
 
-#define ICON_HEIGHT 	13
-#define ICON_WIDTH	12
-#define ICON_BYTEWIDTH	2
+#define ICON_HEIGHT     13
+#define ICON_WIDTH  12
+#define ICON_BYTEWIDTH  2
 const unsigned char laseron_bmp[] PROGMEM =
 {
     0xff, 0xf0,

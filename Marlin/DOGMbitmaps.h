@@ -1,6 +1,6 @@
-#define START_BMPWIDTH 	60	//Width in pixels
-#define START_BMPHEIGHT 	64	//Height in pixels
-#define START_BMPBYTEWIDTH 	8	//Width in bytes
+#define START_BMPWIDTH  60  //Width in pixels
+#define START_BMPHEIGHT     64  //Height in pixels
+#define START_BMPBYTEWIDTH  8   //Width in bytes
 const unsigned char start_bmp[574] PROGMEM =   //AVR-GCC, WinAVR
 {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF0,
@@ -69,9 +69,9 @@ const unsigned char start_bmp[574] PROGMEM =   //AVR-GCC, WinAVR
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF0
 };
 
-#define STATUS_SCREENWIDTH 		115	//Width in pixels
-#define STATUS_SCREENHEIGHT 	19	//Height in pixels
-#define STATUS_SCREENBYTEWIDTH 	15	//Width in bytes
+#define STATUS_SCREENWIDTH      115 //Width in pixels
+#define STATUS_SCREENHEIGHT     19  //Height in pixels
+#define STATUS_SCREENBYTEWIDTH  15  //Width in bytes
 const unsigned char status_screen0_bmp[] PROGMEM =   //AVR-GCC, WinAVR
 {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF, 0xE0,
@@ -95,9 +95,9 @@ const unsigned char status_screen0_bmp[] PROGMEM =   //AVR-GCC, WinAVR
     0x0C, 0x00, 0x00, 0x06, 0x00, 0x00, 0x06, 0x00, 0x01, 0xFF, 0xFF, 0x80, 0x00, 0x00, 0x00
 };
 
-#define STATUS_SCREENWIDTH 		115	//Width in pixels
-#define STATUS_SCREENHEIGHT 	19	//Height in pixels
-#define STATUS_SCREENBYTEWIDTH 	15	//Width in bytes
+#define STATUS_SCREENWIDTH      115 //Width in pixels
+#define STATUS_SCREENHEIGHT     19  //Height in pixels
+#define STATUS_SCREENBYTEWIDTH  15  //Width in bytes
 const unsigned char status_screen1_bmp[] PROGMEM =   //AVR-GCC, WinAVR
 {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF, 0xE0,

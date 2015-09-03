@@ -53,13 +53,13 @@
 */
 
 // DOGM parameters (size in pixels)
-#define DOG_CHAR_WIDTH			6
-#define DOG_CHAR_HEIGHT			12
-#define DOG_CHAR_WIDTH_LARGE	9
-#define DOG_CHAR_HEIGHT_LARGE	18
+#define DOG_CHAR_WIDTH          6
+#define DOG_CHAR_HEIGHT         12
+#define DOG_CHAR_WIDTH_LARGE    9
+#define DOG_CHAR_HEIGHT_LARGE   18
 
 
-#define START_ROW				0
+#define START_ROW               0
 
 
 /* Custom characters defined in font font_6x10_marlin.c */
@@ -73,7 +73,7 @@
 #define LCD_STR_CLOCK       "\xFC"
 #define LCD_STR_ARROW_RIGHT "\xFA"
 
-#define FONT_STATUSMENU	u8g_font_6x9
+#define FONT_STATUSMENU u8g_font_6x9
 
 int lcd_contrast;
 
@@ -86,19 +86,19 @@ int lcd_contrast;
     U8GLIB_NHD_C12864 u8g(DOGLCD_CS, DOGLCD_A0);
 #else
     // for regular DOGM128 display with HW-SPI
-    U8GLIB_DOGM128 u8g(DOGLCD_CS, DOGLCD_A0);	// HW-SPI Com: CS, A0
+    U8GLIB_DOGM128 u8g(DOGLCD_CS, DOGLCD_A0);   // HW-SPI Com: CS, A0
 #endif
 
 static void lcd_implementation_init()
 {
     #ifdef LCD_PIN_BL
-    pinMode(LCD_PIN_BL, OUTPUT);	// Enable LCD backlight
+    pinMode(LCD_PIN_BL, OUTPUT);    // Enable LCD backlight
     digitalWrite(LCD_PIN_BL, HIGH);
     #endif
 
     u8g.setContrast(lcd_contrast);
     //  Uncomment this if you have the first generation (V1.10) of STBs board
-    //  pinMode(17, OUTPUT);	// Enable LCD backlight
+    //  pinMode(17, OUTPUT);    // Enable LCD backlight
     //  digitalWrite(17, HIGH);
 
     u8g.firstPage();
@@ -113,15 +113,15 @@ static void lcd_implementation_init()
     while(u8g.nextPage());
 
     #ifdef LCD_SCREEN_ROT_90
-    u8g.setRot90();	// Rotate screen by 90°
+    u8g.setRot90(); // Rotate screen by 90°
     #endif
 
     #ifdef LCD_SCREEN_ROT_180
-    u8g.setRot180();	// Rotate screen by 180°
+    u8g.setRot180();    // Rotate screen by 180°
     #endif
 
     #ifdef LCD_SCREEN_ROT_270
-    u8g.setRot270();	// Rotate screen by 270°
+    u8g.setRot270();    // Rotate screen by 270°
     #endif
 
 
@@ -156,12 +156,12 @@ static void lcd_implementation_clear()
     //
     // Check this article: http://arduino.cc/forum/index.php?topic=91395.25;wap2
     //
-    //	u8g.firstPage();
-    //	do {
-    //			u8g.setColorIndex(0);
-    //			u8g.drawBox (0, 0, u8g.getWidth(), u8g.getHeight());
-    //			u8g.setColorIndex(1);
-    //		} while( u8g.nextPage() );
+    //  u8g.firstPage();
+    //  do {
+    //          u8g.setColorIndex(0);
+    //          u8g.drawBox (0, 0, u8g.getWidth(), u8g.getHeight());
+    //          u8g.setColorIndex(1);
+    //      } while( u8g.nextPage() );
 }
 
 /* Arduino < 1.0.0 is missing a function to print PROGMEM strings, so we need to implement our own */
@@ -178,7 +178,7 @@ static void lcd_printPGM(const char* str)
 
 static void lcd_implementation_status_screen()
 {
-    u8g.setColorIndex(1);	// black on white
+    u8g.setColorIndex(1);   // black on white
     #ifdef LASER_PERIPHERALS
 
     if(laser_peripherals_ok())
@@ -255,7 +255,7 @@ static void lcd_implementation_status_screen()
     // X, Y, Z-Coordinates
     u8g.setFont(FONT_STATUSMENU);
     u8g.drawBox(0, 29, 128, 10);
-    u8g.setColorIndex(0);	// white on black
+    u8g.setColorIndex(0);   // white on black
     u8g.setPrintPos(2, 37);
     u8g.print("X");
     u8g.drawPixel(8, 33);
@@ -274,7 +274,7 @@ static void lcd_implementation_status_screen()
     u8g.drawPixel(89, 35);
     u8g.setPrintPos(91, 37);
     u8g.print(ftostr31(current_position[Z_AXIS]));
-    u8g.setColorIndex(1);	// black on white
+    u8g.setColorIndex(1);   // black on white
 
     // Feedrate
     u8g.setFont(u8g_font_6x10_marlin);
@@ -300,9 +300,9 @@ static void lcd_implementation_drawmenu_generic(uint8_t row, const char* pstr, c
 
     if((pre_char == '>') || (pre_char == LCD_STR_UPLEVEL[0]))
     {
-        u8g.setColorIndex(1);		// black on white
+        u8g.setColorIndex(1);       // black on white
         u8g.drawBox(0, row * DOG_CHAR_HEIGHT + 3, 128, DOG_CHAR_HEIGHT);
-        u8g.setColorIndex(0);		// following text must be white on black
+        u8g.setColorIndex(0);       // following text must be white on black
     }
     else
     {
@@ -335,7 +335,7 @@ static void lcd_implementation_drawmenu_generic(uint8_t row, const char* pstr, c
 
     u8g.print(post_char);
     u8g.print(' ');
-    u8g.setColorIndex(1);		// restore settings to black on white
+    u8g.setColorIndex(1);       // restore settings to black on white
 }
 
 static void lcd_implementation_drawmenu_setting_edit_generic(uint8_t row, const char* pstr, char pre_char, char* data)
@@ -446,11 +446,11 @@ static void lcd_implementation_drawmenu_sdfile_selected(uint8_t row, const char*
         longFilename[LCD_WIDTH - 1] = '\0';
     }
 
-    u8g.setColorIndex(1);		// black on white
+    u8g.setColorIndex(1);       // black on white
     u8g.drawBox(0, row * DOG_CHAR_HEIGHT + 3, 128, DOG_CHAR_HEIGHT);
-    u8g.setColorIndex(0);		// following text must be white on black
+    u8g.setColorIndex(0);       // following text must be white on black
     u8g.setPrintPos(0 * DOG_CHAR_WIDTH, (row + 1) * DOG_CHAR_HEIGHT);
-    u8g.print(' ');	// Indent by 1 char
+    u8g.print(' '); // Indent by 1 char
 
     while((c = *filename) != '\0')
     {
@@ -464,7 +464,7 @@ static void lcd_implementation_drawmenu_sdfile_selected(uint8_t row, const char*
         u8g.print(' ');
     }
 
-    u8g.setColorIndex(1);		// black on white
+    u8g.setColorIndex(1);       // black on white
 }
 
 static void lcd_implementation_drawmenu_sdfile(uint8_t row, const char* pstr, const char* filename, char* longFilename)
@@ -507,11 +507,11 @@ static void lcd_implementation_drawmenu_sddirectory_selected(uint8_t row, const 
         longFilename[LCD_WIDTH - 2] = '\0';
     }
 
-    u8g.setColorIndex(1);		// black on white
+    u8g.setColorIndex(1);       // black on white
     u8g.drawBox(0, row * DOG_CHAR_HEIGHT + 3, 128, DOG_CHAR_HEIGHT);
-    u8g.setColorIndex(0);		// following text must be white on black
+    u8g.setColorIndex(0);       // following text must be white on black
     u8g.setPrintPos(0 * DOG_CHAR_WIDTH, (row + 1) * DOG_CHAR_HEIGHT);
-    u8g.print(' ');	// Indent by 1 char
+    u8g.print(' '); // Indent by 1 char
     u8g.print(LCD_STR_FOLDER[0]);
 
     while((c = *filename) != '\0')
@@ -527,7 +527,7 @@ static void lcd_implementation_drawmenu_sddirectory_selected(uint8_t row, const 
         u8g.print(' ');
     }
 
-    u8g.setColorIndex(1);		// black on white
+    u8g.setColorIndex(1);       // black on white
 }
 
 static void lcd_implementation_drawmenu_sddirectory(uint8_t row, const char* pstr, const char* filename, char* longFilename)

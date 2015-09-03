@@ -73,7 +73,7 @@ void mc_arc(float* position, float* target, float* offset, uint8_t axis_0, uint8
     */
     float theta_per_segment = angular_travel / segments;
     float linear_per_segment = linear_travel / segments;
-    //	float extruder_per_segment = extruder_travel/segments;
+    //  float extruder_per_segment = extruder_travel/segments;
 
     /* Vector rotation by transformation matrix: r is the original vector, r_T is the rotated vector,
        and phi is the angle of rotation. Based on the solution approach by Jens Geisler.
@@ -140,7 +140,7 @@ void mc_arc(float* position, float* target, float* offset, uint8_t axis_0, uint8
         arc_target[axis_0] = center_axis0 + r_axis0;
         arc_target[axis_1] = center_axis1 + r_axis1;
         arc_target[axis_linear] += linear_per_segment;
-        //		arc_target[E_AXIS] += extruder_per_segment;
+        //      arc_target[E_AXIS] += extruder_per_segment;
 
         clamp_to_software_endstops(arc_target);
         plan_buffer_line(arc_target[X_AXIS], arc_target[Y_AXIS], arc_target[Z_AXIS], feed_rate);

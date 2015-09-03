@@ -58,14 +58,14 @@
 #define LED_PIN            13
 
 #define LASER_INTENSITY_PIN 6 // Digital pins 2, 3, 5, 6, 7, 8 are attached to timers we can use
-#define LASER_FIRING_PIN	5
+#define LASER_FIRING_PIN    5
 
 #ifdef LASER_POWER_DOWN
     #define LASER_POWER_PIN 9 // This is currently hard-coded to timer2 which services pins 9, 10
 #endif // LASER_POWER_DOWN
 #ifdef LASER_PERIPHERALS
     #define LASER_PERIPHERALS_PIN       4
-    #define LASER_PERIPHERALS_STATUS_PIN		  11
+    #define LASER_PERIPHERALS_STATUS_PIN          11
 #endif // LASER_PERIPHERALS
 
 #define FAN_PIN            9 // (Sprinter config)
@@ -150,7 +150,7 @@
 
     #else //old style panel with shift register
         //arduino pin witch triggers an piezzo beeper
-        #define BEEPER 33		//No Beeper added
+        #define BEEPER 33       //No Beeper added
 
         //buttons are attached to a shift register
         // Not wired this yet

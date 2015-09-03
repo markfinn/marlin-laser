@@ -32,7 +32,7 @@
 typedef struct
 {
     // Fields used by the bresenham algorithm for tracing the line
-    long steps_x, steps_y, steps_z;			  // Step count along each axis
+    long steps_x, steps_y, steps_z;           // Step count along each axis
     unsigned long step_event_count;           // The number of step events required to complete this block
     long accelerate_until;                    // The index of the step event on which to stop acceleration
     long decelerate_after;                    // The index of the step event on which to start decelerating
@@ -40,7 +40,7 @@ typedef struct
     unsigned char direction_bits;             // The direction bit set for this block (refers to *_DIRECTION_BIT in config.h)
 
     // Fields used by the motion planner to manage acceleration
-    //  float speed_x, speed_y, speed_z, speed_e;		   // Nominal mm/sec for each axis
+    //  float speed_x, speed_y, speed_z, speed_e;          // Nominal mm/sec for each axis
     float nominal_speed;                               // The nominal speed for this block in mm/sec
     float entry_speed;                                 // Entry speed at previous-current junction in mm/sec
     float max_entry_speed;                             // Maximum allowable junction entry speed in mm/sec
