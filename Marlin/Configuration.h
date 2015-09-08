@@ -58,49 +58,6 @@
 #define LASER_PWM 25000 // hertz
 #define LASER_FOCAL_HEIGHT 74.50 // z axis position at which the laser is focused
 
-//===========================================================================
-//=============================Thermal Settings  ============================
-//===========================================================================
-//
-//--NORMAL IS 4.7kohm PULLUP!-- 1kohm pullup can be used on hotend sensor, using correct resistor and table
-//
-//// Temperature sensor settings:
-// -2 is thermocouple with MAX6675 (only for sensor 0)
-// -1 is thermocouple with AD595
-// 0 is not used
-// 1 is 100k thermistor - best choice for EPCOS 100k (4.7k pullup)
-// 2 is 200k thermistor - ATC Semitec 204GT-2 (4.7k pullup)
-// 3 is mendel-parts thermistor (4.7k pullup)
-// 4 is 10k thermistor !! do not use it for a hotend. It gives bad resolution at high temp. !!
-// 5 is 100K thermistor - ATC Semitec 104GT-2 (Used in ParCan) (4.7k pullup)
-// 6 is 100k EPCOS - Not as accurate as table 1 (created using a fluke thermocouple) (4.7k pullup)
-// 7 is 100k Honeywell thermistor 135-104LAG-J01 (4.7k pullup)
-// 71 is 100k Honeywell thermistor 135-104LAF-J01 (4.7k pullup)
-// 8 is 100k 0603 SMD Vishay NTCS0603E3104FXT (4.7k pullup)
-// 9 is 100k GE Sensing AL03006-58.2K-97-G1 (4.7k pullup)
-// 10 is 100k RS thermistor 198-961 (4.7k pullup)
-// 60 is 100k Maker's Tool Works Kapton Bed Thermister
-//
-//    1k ohm pullup tables - This is not normal, you would have to have changed out your 4.7k for 1k
-//                          (but gives greater accuracy and more stable PID)
-// 51 is 100k thermistor - EPCOS (1k pullup)
-// 52 is 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
-// 55 is 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan) (1k pullup)
-
-// If your bed has low resistance e.g. .6 ohm and throws the fuse you can duty cycle it to reduce the
-// average current. The value should be an integer and the heat bed will be turned on for 1 interval of
-// HEATER_BED_DUTY_CYCLE_DIVIDER intervals.
-//#define HEATER_BED_DUTY_CYCLE_DIVIDER 4
-
-// PID settings:
-// Comment the following line to disable PID and enable bang-bang.
-#define PID_MAX 255 // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
-
-// This sets the max power delivered to the bed, and replaces the HEATER_BED_DUTY_CYCLE_DIVIDER option.
-// all forms of bed control obey this (PID, bang-bang, bang-bang with hysteresis)
-// setting this to anything other than 255 enables a form of PWM to the bed just like HEATER_BED_DUTY_CYCLE_DIVIDER did,
-// so you shouldn't use it unless you are OK with PWM on your bed.  (see the comment on enabling PIDTEMPBED)
-#define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
 
 //===========================================================================
 //=============================Mechanical Settings===========================
@@ -218,14 +175,6 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // please keep turned on if you can.
 #define EEPROM_CHITCHAT
 
-// Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 180
-#define PLA_PREHEAT_HPB_TEMP 70
-#define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
-
-#define ABS_PREHEAT_HOTEND_TEMP 240
-#define ABS_PREHEAT_HPB_TEMP 100
-#define ABS_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
 
 //LCD and SD support
 //#define ULTRA_LCD  //general lcd support, also 16x2
@@ -385,6 +334,5 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 //#define SF_ARC_FIX
 
 #include "Configuration_adv.h"
-#include "thermistortables.h"
 
 #endif //__CONFIGURATION_H
