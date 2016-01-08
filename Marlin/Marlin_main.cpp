@@ -372,9 +372,11 @@ void setup()
     setup_photpin();
 
     lcd_init();
+    #if BEEPER > -1
     tone(BEEPER, 1500);
     _delay_ms(1000);    // wait 1sec to display the splash screen
     noTone(BEEPER);
+    #endif
 
     #if defined(CONTROLLERFAN_PIN) && CONTROLLERFAN_PIN > -1
     SET_OUTPUT(CONTROLLERFAN_PIN);    //Set pin used for driver cooling fan
@@ -2319,4 +2321,3 @@ bool IsStopped()
 {
     return Stopped;
 };
-
