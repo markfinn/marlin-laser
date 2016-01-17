@@ -146,7 +146,7 @@
 //#define ABORT_ON_ENDSTOP_HIT_FEATURE_ENABLED
 
 // Arc interpretation settings:
-#define MM_PER_ARC_SEGMENT 1
+#define MM_PER_ARC_SEGMENT 0.25
 #define N_ARC_CORRECTION 25
 
 const unsigned int dropsegments = 5; //everything with less than this number of steps will be ignored as move and joined with the next movement
