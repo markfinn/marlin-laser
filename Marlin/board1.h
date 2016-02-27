@@ -139,6 +139,8 @@
         #define LCD_PINS_D6 27
         #define LCD_PINS_D7 29
     #endif
+#else
+        #define BEEPER -1       //No Beeper added
 #endif //ULTRA_LCD
 
 #ifndef SDSUPPORT
