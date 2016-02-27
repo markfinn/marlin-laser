@@ -131,7 +131,7 @@ CXXSRC = WMath.cpp WString.cpp Print.cpp Marlin_main.cpp	\
 	MarlinSerial.cpp Sd2Card.cpp SdBaseFile.cpp SdFatUtil.cpp	\
 	SdFile.cpp SdVolume.cpp motion_control.cpp planner.cpp		\
 	stepper.cpp cardreader.cpp ConfigurationStore.cpp \
-	watchdog.cpp SPI.cpp Tone.cpp laser.cpp Base64.cpp
+	watchdog.cpp SPI.cpp Tone.cpp laser.cpp Base64.cpp flow.cpp
 ifeq ($(LIQUID_TWI2), 0)
 CXXSRC += LiquidCrystal.cpp
 else

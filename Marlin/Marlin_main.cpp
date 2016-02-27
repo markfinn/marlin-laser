@@ -39,6 +39,7 @@
 #include "language.h"
 #include "pins_arduino.h"
 #include "Base64.h"
+#include "flow.h"
 
 #if defined(DIGIPOTSS_PIN) && DIGIPOTSS_PIN > -1
     #include <SPI.h>
@@ -374,7 +375,7 @@ void setup()
     lcd_init();
     #if BEEPER > -1
     tone(BEEPER, 1500);
-    _delay_ms(1000);    // wait 1sec to display the splash screen
+//    _delay_ms(1000);    // wait 1sec to display the splash screen
     noTone(BEEPER);
     #endif
 
@@ -387,7 +388,11 @@ void setup()
     // Start up our lcd button update interrupt
     OCR0B = 128;
     TIMSK0 |= (1 << OCIE0B);
+
+    flow_init();  //initialise
+
 }
+dio9 OC2B
 
 // This interrups used to do the temperature monitoring. It now only does button update.
 // Maybe this could be repurposed for other tasks
@@ -444,6 +449,7 @@ void loop()
         bufindr = (bufindr + 1) % BUFSIZE;
     }
 
+    manage_flow();
     manage_inactivity();
     checkHitEndstops();
     lcd_update();
