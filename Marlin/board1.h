@@ -33,7 +33,7 @@
 #define Z_DIR_PIN          48
 #define Z_ENABLE_PIN       62
 #define Z_MIN_PIN          18
-#define Z_MAX_PIN          19
+#define Z_MAX_PIN          -1
 
 #define Z2_STEP_PIN        36
 #define Z2_DIR_PIN         34
@@ -46,15 +46,15 @@
 #define LASER_INTENSITY_PIN 6 // Digital pins 2, 3, 5, 6, 7, 8 are attached to timers we can use
 #define LASER_FIRING_PIN    5
 
-#ifdef LASER_POWER_DOWN
-    #define LASER_POWER_PIN 9 // This is currently hard-coded to timer2 which services pins 9, 10
-#endif // LASER_POWER_DOWN
 #ifdef LASER_PERIPHERALS
     #define LASER_PERIPHERALS_PIN       4
     #define LASER_PERIPHERALS_STATUS_PIN          11
 #endif // LASER_PERIPHERALS
 
-#define FAN_PIN            9 // (Sprinter config)
+#define FAN_PIN            8 // (Sprinter config)
+#define FLOWS 1
+#define FLOW_PIN 19
+#define PUMP_PIN 9
 
 //#define CONTROLLERFAN_PIN  10 //Pin used for the fan to cool controller
 

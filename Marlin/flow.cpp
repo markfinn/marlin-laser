@@ -2,8 +2,6 @@
 #include "flow.h"
 #include "watchdog.h"
 
-#define FLOWS 1
-#define FLOWPIN 19
 
 //===========================================================================
 //=============================public variables============================
@@ -30,6 +28,74 @@ void flow_init()
 {
 pinMode(pin, INPUT);
 attachInterrupt(digitalPinToInterrupt(FLOWPIN), flow_isr, CHANGE);
+
+    pinMode(pin, OUTPUT);
+    analogWrite(pin, 1);
+
+    switch(digitalPinToTimer(pin))
+    {
+       #ifdef TCCR0A
+
+        case TIMER0A:
+        case TIMER0B:
+        {
+            TCCR0B = 0x00;  // stop Timer4 clock for register updates
+            TCCR0A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+            //ICR0 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+            OCR0A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+            TCCR0B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+
+            noInterrupts();
+            TCCR0B &= 0xf8; // stop timer, OC4A may be active now
+            TCNT0 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+            //ICR0 = labs(F_CPU / LASER_PWM); // set new PWM period
+            TCCR0B |= 0x01; // start the timer with proper prescaler value
+            interrupts();
+            break;
+        }
+
+        #endif
+        #ifdef TCCR1A
+
+        case TIMER1A:
+        case TIMER1B:
+        {
+            TCCR1B = 0x00;  // stop Timer4 clock for register updates
+            TCCR1A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+            //ICR1 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+            OCR1A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+            TCCR1B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+
+            noInterrupts();
+            TCCR1B &= 0xf8; // stop timer, OC4A may be active now
+            TCNT1 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+            //ICR1 = labs(F_CPU / LASER_PWM); // set new PWM period
+            TCCR1B |= 0x01; // start the timer with proper prescaler value
+            interrupts();
+            break;
+        }
+
+        #endif
+        #ifdef TCCR2A
+
+        case TIMER2:
+        case TIMER2A:
+        case TIMER2B:
+        {
+            TCCR2B = 0x00;  // stop Timer4 clock for register updates
+            TCCR2A = 0x82; // Clear OC4A on match, fast PWM mode, lower WGM4x=14
+            //ICR2 = labs(F_CPU / LASER_PWM); // clock cycles per PWM pulse
+            OCR2A = labs(F_CPU / LASER_PWM) - 1; // ICR4 - 1 force immediate compare on next tick
+            TCCR2B = 0x18 | 0x01; // upper WGM4x = 14, clock sel = prescaler, start running
+
+            noInterrupts();
+            TCCR2B &= 0xf8; // stop timer, OC4A may be active now
+            TCNT2 = labs(F_CPU / LASER_PWM); // force immediate compare on next tick
+            //ICR2 = labs(F_CPU / LASER_PWM); // set new PWM period
+            TCCR2B |= 0x01; // start the timer with proper prescaler value
+            interrupts();
+            break;
+        }
 
 
   // Finish init of arrays 

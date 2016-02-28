@@ -58,6 +58,8 @@
 #define LASER_PWM 25000 // hertz
 #define LASER_FOCAL_HEIGHT 74.50 // z axis position at which the laser is focused
 
+#define FLOWS 1
+
 
 //===========================================================================
 //=============================Mechanical Settings===========================
